@@ -2,7 +2,7 @@ import random
 from ascii_art import art
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
-def ace_check(hand):
+def ace_check(hand): # To check and adjust the value of ACE in Deck
     score = sum(hand)
     index = 0
     for i in hand:
@@ -12,7 +12,7 @@ def ace_check(hand):
                 index += 1
                 score = sum(hand)
         
-def score_check(player_hand, computer_hand, player_score, computer_score):
+def score_check(player_hand, computer_hand, player_score, computer_score):  # To check Who is the winner
     print(f"Your final Hand: {player_hand}, Final Score: {player_score}")
     print(f"Computer's final Hand: {computer_hand}, Final Score: {computer_score}\n")
     if player_score > 21:
@@ -33,7 +33,7 @@ def score_check(player_hand, computer_hand, player_score, computer_score):
         print("Computer Won!")
         print("Better luck next time!")
         
-def game_mechanics():
+def game_mechanics():   # Main Game Mechanics
     p_hand = [random.choice(cards), random.choice(cards)]
     c_hand = [random.choice(cards), random.choice(cards)]
     ace_check(p_hand)
