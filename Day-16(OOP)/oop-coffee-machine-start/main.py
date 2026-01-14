@@ -15,7 +15,7 @@ while serve:
     elif choice == "report":
         coffeemaker.report()
         moneymachine.report()
-    elif menu.find_drink(choice):
+    else:
         order = menu.find_drink(choice)
         if coffeemaker.is_resource_sufficient(order):
             if moneymachine.make_payment(order.cost):
