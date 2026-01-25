@@ -32,11 +32,7 @@ while game_on:
     if total_correct_guess == 50:
         game_on = False
     if answer_state == "off":
-        states_not_guessed = []
-        for state in states:
-            if state not in guessed_states:
-                states_not_guessed.append(state)
-
+        states_not_guessed = [state for state in states if state not in guessed_states]
         st = {"states": states_not_guessed}
 
         learn_State = pd.DataFrame(st)
