@@ -4,10 +4,16 @@ import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT = "Ariel"
-
-french_word =  pd.read_csv("./data/french_words.csv")
-to_learn = french_word.to_dict(orient="records")
 word = {}
+to_learn={}
+
+try:
+    french_word =  pd.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    og_data = pd.read_csv("./data/french_words.csv")
+    to_learn = og_data.to_dict(orient="records")
+else:
+    to_learn = french_word.to_dict(orient="records")
 
 def flip():
     canvas.itemconfig(card, image=back_photo)
@@ -24,6 +30,12 @@ def next_card():
     canvas.itemconfig(title_text, text="French", fill="black")
     canvas.itemconfig(word_text, text=french, fill="black")
     flip_timer = window.after(3000, flip)
+
+def is_known():
+    to_learn.remove(word)
+    data = pd.DataFrame(to_learn)
+    data.to_csv("./data/words_to_learn.csv", index=False)
+    next_card()
 
 window = Tk()
 window.title("FlashCard")
