@@ -12,7 +12,7 @@ class QuizInterface:
         self.window.title("Quizzy Quiz")
         self.window.config(bg=THEME_COLOR, padx=20, pady=20)
 
-        self.t_label = Label(text=f"Score: {self.score}", bg=THEME_COLOR, fg="white")
+        self.t_label = Label(text=f"Score: {self.quiz.score}", bg=THEME_COLOR, fg="white")
         self.t_label.grid(row=1, column=2)
 
         self.canvas = Canvas(height=250, width=300, bg="white")
@@ -39,7 +39,9 @@ class QuizInterface:
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.question, text=q_text)
         else:
-            self.canvas.config(text="End of questions")
+            self.canvas.itemconfig(self.question, text="End of questions")
+            self.right_button.config(state="disabled")
+            self.wrong_button.config(state="disabled")
 
     def true_ans(self):
         self.feedback(self.quiz.check_answer("True"))
